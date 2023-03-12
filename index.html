@@ -1,0 +1,62 @@
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    </head>
+<body>
+    <div class="login-card">
+        <h1>Enter Details</h1>
+        <div>
+            <input type="text" id="input_name" placeholder="UserName" required>
+        </div>
+        <div>
+            <input type="number" id="input_phone" placeholder="PhoneNumber" required>
+        </div>
+        <div>
+            <input type="email" id="input_mail" placeholder="EmailID" required>
+        </div>
+        <div>
+            <input type="submit" onclick="store()" class="login login-submit" value="Login">
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+function store()
+{
+var uname=document.getElementById('input_name').value;
+var pn = document.getElementById('input_phone').value;
+var email = document.getElementById('input_mail').value;
+
+
+//alert(uname);
+if(uname=="")
+{
+    alert("Enter valid details");
+}
+else if(pn=="")
+{
+    alert("Enter valid details");
+}
+else if(email == "")
+{
+    
+    alert("Enter valid details");
+}
+else
+{
+    localStorage.setItem('uname',uname);
+    localStorage.setItem('phNo',pn);
+    localStorage.setItem('EmailID',email);
+    window.location.href='sec.html';
+}
+
+}
+
+</script>
+

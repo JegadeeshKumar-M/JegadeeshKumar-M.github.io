@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    
+    <body>
+        <div class="top">
+        <div id="welcome"></div>
+        <input type = 'button' class="login logout" onclick="deleteStorage()" value="LogOut">
+        </div>
+        <div class="container">
+          <center> <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Avatar</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>    
+                    </tr>
+                </thead>
+                <tbody id="insertrow">
+    
+                </tbody>
+            </table></center>
+        </div>
+    </body>
+    <script type="text/javascript">
+        
+    let url = "https://reqres.in/api/users";
+
+
+
+window.onload = async function () {
+
+    
+    var value = "Welcome " + localStorage.getItem('uname');
+
+
+   var output = document.getElementById('welcome');
+   output.innerText = value;
+
+   if(value == "Welcome null"){
+    alert("Please login to continue");
+    window.location.href='index.html';
+    return;
+}
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const jsonData = data;
+            display(jsonData)
+            console.log(jsonData)
+        })
+        .catch(error => console.error(error));
+
+    function display(data){
+        let l = data.data.length
+        let tablebody = "";
+        for(let i = 0;i<l;i++){
+            tablebody = tablebody + "<tr onclick="+"set("+data.data[i].id +")"+">" +
+                    "<td>" + data.data[i].id + "</td>" +
+                    "<td>" + "<img src = "+data.data[i].avatar+">" + "</td>" +
+                    "<td>" + data.data[i].first_name  + "</td>" +
+                    "<td>" + data.data[i].last_name + "</td>" +
+                    "<td>" + data.data[i].email + "</td>" +
+
+                    "</tr>"
+        }
+        
+        document.getElementById("insertrow").innerHTML = tablebody;
+        
+    }
+    
+}
+function set(id)
+        {
+            console.log("hi");
+            localStorage.setItem("id",id);
+            window.open("detailedView.html","_self");
+        }
+
+    function deleteStorage()
+    {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+    </script>
+
+</html>
