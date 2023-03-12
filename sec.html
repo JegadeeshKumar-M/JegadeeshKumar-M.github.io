@@ -50,14 +50,15 @@ window.onload = async function () {
     return;
 }
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const jsonData = data;
-            display(jsonData)
-            console.log(jsonData)
-        })
-        .catch(error => console.error(error));
+     try{
+    const response = await fetch(url);
+    const data =await response.json();
+    display(data);
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
 
     function display(data){
         let l = data.data.length
