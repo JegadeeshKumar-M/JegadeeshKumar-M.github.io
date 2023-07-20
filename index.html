@@ -9,17 +9,17 @@
 <body>
     <div class="login-card">
         <h1>Enter Details</h1>
-        <div>
+        <div class="inputs">
             <input type="text" id="input_name" placeholder="UserName" required>
         </div>
-        <div>
-            <input type="number" id="input_phone" placeholder="PhoneNumber" required>
+        <div class="inputs">
+            <input type="text" id="input_phone" placeholder="PhoneNumber" required>
         </div>
-        <div>
+        <div class="inputs">
             <input type="email" id="input_mail" placeholder="EmailID" required>
         </div>
-        <div>
-            <input type="submit" onclick="store()" class="login login-submit" value="Login">
+        <div class="inputs">
+            <input type="submit" onclick="store()" class="login-submit" value="Login">
         </div>
     </div>
 </body>
@@ -33,19 +33,20 @@ var uname=document.getElementById('input_name').value;
 var pn = document.getElementById('input_phone').value;
 var email = document.getElementById('input_mail').value;
 
+var phoneno = /^\d{10}$/;
+
 
 //alert(uname);
 if(uname=="")
 {
     alert("Enter valid details");
 }
-else if(pn=="")
+else if(pn=="" || !(pn.length==10) || !(pn.match(phoneno)))
 {
     alert("Enter valid details");
-}
-else if(email == "")
-{
-    
+} 
+else if(email == "" || !(email.includes("@")))
+{  
     alert("Enter valid details");
 }
 else
